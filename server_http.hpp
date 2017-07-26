@@ -252,6 +252,11 @@ namespace SimpleWeb {
             });
         }
 
+        ///Use this function if you need to recursively send parts of a longer message
+        void syncsend(std::shared_ptr<Response> response) {
+            boost::asio::write(*response->socket, response->streambuf) ;
+        }
+
         /// If you have your own boost::asio::io_service, store its pointer here before running start().
         /// You might also want to set config.thread_pool_size to 0.
         std::shared_ptr<boost::asio::io_service> io_service;
